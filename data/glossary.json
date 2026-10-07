@@ -1,0 +1,1431 @@
+[
+  {
+    "en_term": "Material Safety Data Sheet",
+    "target_term": "Паспорт безопасности материала"
+  },
+  {
+    "en_term": "Safety Data Sheet",
+    "target_term": "Паспорт безопасности"
+  },
+  {
+    "en_term": "Contractor",
+    "target_term": "Подрядчик",
+    "notes": "Translate the role even when uppercase."
+  },
+  {
+    "en_term": "Manufacturer",
+    "target_term": "Производитель",
+    "notes": "Translate the role even when uppercase."
+  },
+  {
+    "en_term": "Specification",
+    "target_term": "Спецификация"
+  },
+  {
+    "en_term": "Document title",
+    "target_term": "Название документа"
+  },
+  {
+    "en_term": "runs",
+    "target_term": "потеки",
+    "exact_only": false,
+    "notes": "paint runs (a coating defect), not the verb"
+  },
+  {
+    "en_term": "Make",
+    "target_term": "Производитель",
+    "exact_only": true
+  },
+  {
+    "en_term": "Stem",
+    "target_term": "Шток",
+    "exact_only": true
+  },
+  {
+    "en_term": "Face to face dimension",
+    "target_term": "Строительная длина"
+  },
+  {
+    "en_term": "Service",
+    "target_term": "Назначение",
+    "exact_only": true
+  },
+  {
+    "en_term": "Testing Fluid",
+    "target_term": "Испытательная жидкость"
+  },
+  {
+    "en_term": "Good Engineering Practice",
+    "target_term": "Надлежащая инженерная практика"
+  },
+  {
+    "en_term": "Calibration Due Date",
+    "target_term": "Дата следующей калибровки"
+  },
+  {
+    "en_term": "Kick off Meeting",
+    "target_term": "Стартовое совещание"
+  },
+  {
+    "en_term": "Product Name:",
+    "target_term": "Наименование продукции:"
+  },
+  {
+    "en_term": "NPT male",
+    "target_term": "NPT с наружной резьбой"
+  },
+  {
+    "en_term": "Safety Goggles",
+    "target_term": "защитные очки"
+  },
+  {
+    "en_term": "Face Shield",
+    "target_term": "защитный щиток"
+  },
+  {
+    "en_term": "Safety Shoes",
+    "target_term": "защитная обувь"
+  },
+  {
+    "en_term": "Earplugs",
+    "target_term": "беруши"
+  },
+  {
+    "en_term": "Pressure Safety Valve",
+    "target_term": "предохранительный клапан"
+  },
+  {
+    "en_term": "blind plug",
+    "target_term": "заглушка"
+  },
+  {
+    "en_term": "hydrotest",
+    "target_term": "гидравлическое испытание"
+  },
+  {
+    "en_term": "QA/QC Manager",
+    "target_term": "Руководитель по обеспечению и контролю качества"
+  },
+  {
+    "en_term": "Discharge Line",
+    "target_term": "напорная линия",
+    "notes": "NOT разгрузочная линия",
+    "internal_note": "approved docs Ref-2..Ref-6 (Word versions), напорная x7 (Ref-5) vs разгрузочная x4 (Ref-6, one document); also the correct meaning for a pump"
+  },
+  {
+    "en_term": "Honeywell",
+    "target_term": "Ханивелл",
+    "notes": "transliterated per approved reference",
+    "internal_note": ""
+  },
+  {
+    "en_term": "Hastelloy",
+    "target_term": "Хастеллой",
+    "notes": "transliterated per approved reference",
+    "internal_note": ""
+  },
+  {
+    "en_term": "male",
+    "target_term": "наружная резьба",
+    "notes": "Thread connection: male means external thread, not a person's gender.",
+    "internal_note": ""
+  },
+  {
+    "en_term": "of span",
+    "target_term": "от диапазона измерения",
+    "notes": "Instrument accuracy: span is the measurement span, not a structural span.",
+    "internal_note": ""
+  },
+  {
+    "en_term": "Barg",
+    "target_term": "Барг",
+    "notes": "transliterate the unit",
+    "internal_note": ""
+  },
+  {
+    "en_term": "Item Tag No.",
+    "target_term": "Позиционное обозначение оборудования",
+    "notes": "Equipment identifier, not a retail product label.",
+    "internal_note": ""
+  },
+  {
+    "en_term": "Approved for Construction",
+    "target_term": "Утверждено для строительства",
+    "notes": "",
+    "internal_note": "approved docs Ref-2..Ref-6 (Word versions), Утверждено x3 vs Одобрено x2 | previous: Одобрено для строительства"
+  },
+  {
+    "en_term": "Issued for review",
+    "target_term": "Выдано на рассмотрение",
+    "notes": "",
+    "internal_note": "approved docs Ref-2..Ref-6 (Word versions), Выдано x8 (Ref-3, Ref-6), Выпущено для рассмотрения x7, ознакомления x4: plurality | previous: Выпущено для рассмотрения"
+  },
+  {
+    "en_term": "Issued for Interdisciplinary Review",
+    "target_term": "Выпущено для междисциплинарного обзора",
+    "notes": "",
+    "internal_note": "approved docs Ref-2..Ref-6 (Word versions), обзора x4 (Ref-3, Ref-6) vs рассмотрения x2 | previous: Выпущено для междисциплинарного рассмотрения"
+  },
+  {
+    "en_term": "Issued for Internal Review",
+    "target_term": "Выпущено для внутреннего рассмотрения",
+    "notes": "",
+    "internal_note": "approved docs Ref-2..Ref-6 (Word versions), рассмотрения x4 vs обзора x2"
+  },
+  {
+    "en_term": "Datasheet",
+    "target_term": "технический паспорт",
+    "notes": "",
+    "internal_note": "approved docs Ref-2..Ref-6 (Word versions), ТЕХНИЧЕСКИЙ ПАСПОРТ x10 (Ref-4, Ref-6) | previous: Паспорт"
+  },
+  {
+    "en_term": "Pressure Transmitter",
+    "target_term": "Датчик давления",
+    "notes": "",
+    "internal_note": ""
+  },
+  {
+    "en_term": "Ingress Protection",
+    "target_term": "Степень защиты от проникновения",
+    "notes": "",
+    "internal_note": ""
+  },
+  {
+    "en_term": "Power Supply",
+    "target_term": "Источник питания",
+    "notes": "",
+    "internal_note": ""
+  },
+  {
+    "en_term": "Cable Entry",
+    "target_term": "Кабельный ввод",
+    "notes": "",
+    "internal_note": ""
+  },
+  {
+    "en_term": "Operating Pressure",
+    "target_term": "Рабочее давление",
+    "notes": "",
+    "internal_note": ""
+  },
+  {
+    "en_term": "Max Overpressure",
+    "target_term": "Максимальное избыточное давление",
+    "notes": "",
+    "internal_note": ""
+  },
+  {
+    "en_term": "Max Working Pressure Limits",
+    "target_term": "Пределы максимального рабочего давления",
+    "notes": "",
+    "internal_note": ""
+  },
+  {
+    "en_term": "Max Burst Pressure Limits",
+    "target_term": "Пределы максимального давления разрыва",
+    "notes": "",
+    "internal_note": ""
+  },
+  {
+    "en_term": "Area classification",
+    "target_term": "Классификация взрывоопасной зоны",
+    "notes": "",
+    "internal_note": ""
+  },
+  {
+    "en_term": "Hazardous area protection",
+    "target_term": "Защита опасных зон",
+    "notes": "",
+    "internal_note": ""
+  },
+  {
+    "en_term": "Process Connector",
+    "target_term": "Технологический соединитель",
+    "notes": "",
+    "internal_note": ""
+  },
+  {
+    "en_term": "Amplifier Housing",
+    "target_term": "Корпус усилителя",
+    "notes": "",
+    "internal_note": ""
+  },
+  {
+    "en_term": "Cast Aluminium Alloy",
+    "target_term": "Литой алюминиевый сплав",
+    "notes": "",
+    "internal_note": ""
+  },
+  {
+    "en_term": "Design Temperature",
+    "target_term": "Расчетная температура",
+    "notes": "",
+    "internal_note": ""
+  },
+  {
+    "en_term": "Corrosion inhibitor",
+    "target_term": "Ингибитор коррозии",
+    "notes": "",
+    "internal_note": ""
+  },
+  {
+    "en_term": "Methanol Injection",
+    "target_term": "впрыск метанола",
+    "notes": "NOT инъекция метанола",
+    "internal_note": "Ref-5: впрыск x54 vs инъекция x2 | previous: Инъекция метанола"
+  },
+  {
+    "en_term": "Field Development",
+    "target_term": "Обустройство месторождения",
+    "notes": "NOT Разработка месторождения",
+    "internal_note": ""
+  },
+  {
+    "en_term": "Revision History",
+    "target_term": "История редакций",
+    "notes": "NOT История изменений",
+    "internal_note": ""
+  },
+  {
+    "en_term": "Package Engineer",
+    "target_term": "Инженер по комплектации",
+    "notes": "NOT инженер по упаковке",
+    "internal_note": "approved docs Ref-2..Ref-6 (Word versions), NO MAJORITY: комплектации (Ref-2), руководитель пакета (Ref-3), конструктор (Ref-4), упаковке (Ref-5), менеджер проекта (Ref-6); chosen to match package=комплект and 'Package lead' = Ведущий инженер по комплектации in Ref-2; confirm with the client | previous: Инженер по упаковке"
+  },
+  {
+    "en_term": "Engineering Manager",
+    "target_term": "Руководитель инженерного отдела",
+    "notes": "",
+    "internal_note": "approved docs Ref-2..Ref-6 (Word versions), NO MAJORITY: инженерного отдела (Ref-4), инженер-менеджер (Ref-5), проектного отдела (Ref-6); chosen for the literal meaning; confirm with the client | previous: Менеджер по проектированию"
+  },
+  {
+    "en_term": "Hold Record",
+    "target_term": "Перечень уточнений",
+    "notes": "NOT Регистрация задержек",
+    "internal_note": ""
+  },
+  {
+    "en_term": "Hold Nr.",
+    "target_term": "Номер уточнения",
+    "notes": "NOT Держатель №",
+    "internal_note": ""
+  },
+  {
+    "en_term": "Issue Type",
+    "target_term": "Тип выпуска",
+    "notes": "NOT Тип проблемы",
+    "internal_note": ""
+  },
+  {
+    "en_term": "Process Connection",
+    "target_term": "Технологическое соединение",
+    "notes": "",
+    "internal_note": ""
+  },
+  {
+    "en_term": "M.O.C.",
+    "target_term": "Материал изготовления",
+    "notes": "",
+    "internal_note": "",
+    "exact_only": true
+  },
+  {
+    "en_term": "Witnessed tests",
+    "target_term": "свидетельские испытания",
+    "notes": "",
+    "internal_note": ""
+  },
+  {
+    "en_term": "inline diaphragm seals",
+    "target_term": "встроенные мембранные уплотнения",
+    "notes": "NOT разделительные диафрагмы; keep 'встроенные'",
+    "internal_note": ""
+  },
+  {
+    "en_term": "V DC",
+    "target_term": "В постоянного тока",
+    "notes": "",
+    "internal_note": ""
+  },
+  {
+    "en_term": "Datasheet for Pressure Transmitter",
+    "target_term": "Технический паспорт датчика давления",
+    "notes": "title form; NOT 'для' / 'на'",
+    "internal_note": "approved docs Ref-2..Ref-6 (Word versions), ТЕХНИЧЕСКИЙ ПАСПОРТ ДАТЧИКА ДАВЛЕНИЯ x8 (Ref-6) | previous: Паспорт датчика давления"
+  },
+  {
+    "en_term": "Pressure Transmitter Datasheet",
+    "target_term": "Технический паспорт датчика давления",
+    "notes": "",
+    "internal_note": "approved docs Ref-2..Ref-6 (Word versions), same title in Ref-6 | previous: Паспорт датчика давления"
+  },
+  {
+    "en_term": "NefteStroiService Ltd.",
+    "target_term": "Нефтестройсервис ЛТД",
+    "notes": "always Cyrillic; with LLP write ТОО «Нефтестройсервис ЛТД»",
+    "internal_note": ""
+  },
+  {
+    "en_term": "Description of Hold",
+    "target_term": "Описание уточнения",
+    "notes": "NOT Описание удержания",
+    "internal_note": ""
+  },
+  {
+    "en_term": "Qty",
+    "target_term": "Количество",
+    "notes": "NOT Кол-во",
+    "internal_note": "",
+    "exact_only": true
+  },
+  {
+    "en_term": "entire package",
+    "target_term": "комплект",
+    "notes": "NOT пакет",
+    "internal_note": ""
+  },
+  {
+    "en_term": "Measuring Range",
+    "target_term": "Диапазон измерения",
+    "notes": "singular, always",
+    "internal_note": ""
+  },
+  {
+    "en_term": "Rozhkovskoye",
+    "target_term": "Рожковское",
+    "notes": "",
+    "internal_note": "verify spelling against the approved documents"
+  },
+  {
+    "en_term": "Chemical injection system",
+    "target_term": "система впрыска химических реагентов",
+    "notes": "",
+    "internal_note": "[system/general] Cover page uses \"химических веществ\"; body uses \"реагентов\". Pick one."
+  },
+  {
+    "en_term": "package",
+    "target_term": "комплект",
+    "notes": "",
+    "internal_note": "[equipment/general] Used 72 times in the approved doc. Replica mixed пакет/узел/комплект/PACKAGE."
+  },
+  {
+    "en_term": "injection package",
+    "target_term": "комплект",
+    "notes": "",
+    "internal_note": "[equipment/general] Used 72 times in the approved doc. Replica mixed пакет/узел/комплект/PACKAGE."
+  },
+  {
+    "en_term": "injection",
+    "target_term": "впрыск",
+    "notes": "",
+    "internal_note": "[process/general] Approved: впрыск 54x, инъекция 2x. Replica used инъекция 35x. Enforce впрыск."
+  },
+  {
+    "en_term": "Methanol Injection Package",
+    "target_term": "Комплект для впрыска метанола",
+    "notes": "",
+    "internal_note": "[equipment/project] Followed by the unit code, e.g. U10, MI-U10."
+  },
+  {
+    "en_term": "Transfer Station",
+    "target_term": "перевалочная станция",
+    "notes": "",
+    "internal_note": "[location/project] Replica produced 4+ variants (передаточная / перекачки / перекачивающая)."
+  },
+  {
+    "en_term": "Gathering Station",
+    "target_term": "станция сбора",
+    "notes": "",
+    "internal_note": "[location/general] Replica used сборный пункт / сборочный пункт."
+  },
+  {
+    "en_term": "Corrosion Inhibitor Package",
+    "target_term": "Комплект ингибитора коррозии",
+    "notes": "",
+    "internal_note": "[equipment/general]"
+  },
+  {
+    "en_term": "Gathering Station Corrosion Package",
+    "target_term": "Комплект для станции сбора по борьбе с коррозией",
+    "notes": "",
+    "internal_note": "[equipment/project]"
+  },
+  {
+    "en_term": "Methanol",
+    "target_term": "метанол",
+    "notes": "",
+    "internal_note": "[chemical/general]"
+  },
+  {
+    "en_term": "Detergent Injection skid",
+    "target_term": "установка для впрыска моющих средств",
+    "notes": "",
+    "internal_note": "[equipment/general]"
+  },
+  {
+    "en_term": "Skid Tag & Name",
+    "target_term": "Бирка и наименование рамы",
+    "notes": "NOT 'Защитная бирка и полное имя'",
+    "internal_note": "Ref-5 header is a misreading ('Защитная бирка'); body uses 'Бирка и наименование поддона'"
+  },
+  {
+    "en_term": "Plant ID",
+    "target_term": "идентификатор установки",
+    "notes": "NOT 'идентификатор растения'",
+    "internal_note": "[table header/general] \"растения\" means plant as in flora. Replica gave идентификатор установки, which is better."
+  },
+  {
+    "en_term": "Level transmitter",
+    "target_term": "датчик уровня",
+    "notes": "",
+    "internal_note": "[instrument/general] Replica used трансмиттер 11x; enforce датчик уровня."
+  },
+  {
+    "en_term": "Level switch",
+    "target_term": "переключатель уровня",
+    "notes": "",
+    "internal_note": "approved docs Ref-2..Ref-6 (Word versions), Ref-5: переключатель уровня x10 (glossary previously had сигнализатор уровня) | previous: сигнализатор уровня"
+  },
+  {
+    "en_term": "Level gauge",
+    "target_term": "уровнемер",
+    "notes": "",
+    "internal_note": "[instrument/general] Replica used уровнемер for Level TRANSMITTER in places, which collides with this term."
+  },
+  {
+    "en_term": "Pressure gauge",
+    "target_term": "манометр",
+    "notes": "",
+    "internal_note": "[instrument/general]"
+  },
+  {
+    "en_term": "Pressure relief valve",
+    "target_term": "предохранительный клапан",
+    "notes": "",
+    "internal_note": "[equipment/general]"
+  },
+  {
+    "en_term": "Pulsation dampener",
+    "target_term": "демпфер пульсаций",
+    "notes": "",
+    "internal_note": "[equipment/general] Equipment table in the approved doc says \"Гладитель пульсаций\"; avoid that one."
+  },
+  {
+    "en_term": "Calibration pot",
+    "target_term": "калибровочная емкость",
+    "notes": "NOT 'калибровочный потенциометр'",
+    "internal_note": "[equipment/general] A potentiometer is an electrical part. Here it measures pump discharge flow, so a measuring vessel is meant. Confirm with an engineer."
+  },
+  {
+    "en_term": "Flame arrestor",
+    "target_term": "пламегаситель",
+    "notes": "",
+    "internal_note": "[equipment/general]"
+  },
+  {
+    "en_term": "Vent with inline flame arrestor",
+    "target_term": "Вентиляционное отверстие со встроенным пламегасителем",
+    "notes": "NOT 'встроенным пламегасителем'",
+    "internal_note": "[equipment/general] Approved cell is a fragment that drops \"Vent\". Replica left \"inline\" in English."
+  },
+  {
+    "en_term": "Local Control Panel",
+    "target_term": "панель локального управления",
+    "notes": "",
+    "internal_note": "[equipment/general] Keep the acronym LCP in Latin."
+  },
+  {
+    "en_term": "Dosing pump",
+    "target_term": "дозирующий насос",
+    "notes": "",
+    "internal_note": "[equipment/general]"
+  },
+  {
+    "en_term": "metering pump",
+    "target_term": "дозирующий насос",
+    "notes": "",
+    "internal_note": "[equipment/general]"
+  },
+  {
+    "en_term": "Actuator",
+    "target_term": "привод",
+    "notes": "",
+    "internal_note": "approved docs, Ref-5: 'Привод' x5 (table, FM200 Actuator ON, running text); Ref-2: электропривод | previous: исполнительный механизм"
+  },
+  {
+    "en_term": "Stroke length",
+    "target_term": "длина хода",
+    "notes": "",
+    "internal_note": "[process/general] Replica left \"Stroke Length\" in English 5x."
+  },
+  {
+    "en_term": "Turndown ratio",
+    "target_term": "коэффициент регулирования",
+    "notes": "",
+    "internal_note": "[process/general]"
+  },
+  {
+    "en_term": "Suction line",
+    "target_term": "всасывающая линия",
+    "notes": "",
+    "internal_note": "[piping/general]"
+  },
+  {
+    "en_term": "Instrument junction box",
+    "target_term": "распределительная коробка приборов",
+    "notes": "",
+    "internal_note": "[instrument/general]"
+  },
+  {
+    "en_term": "Motor",
+    "target_term": "двигатель",
+    "notes": "",
+    "internal_note": "[equipment/general]"
+  },
+  {
+    "en_term": "Fire detection system",
+    "target_term": "система обнаружения пожара",
+    "notes": "",
+    "internal_note": "[safety/general] Replica left this heading in English."
+  },
+  {
+    "en_term": "Fire suppression system",
+    "target_term": "система пожаротушения",
+    "notes": "",
+    "internal_note": "[safety/general]"
+  },
+  {
+    "en_term": "Methanol detection system",
+    "target_term": "система обнаружения метанола",
+    "notes": "",
+    "internal_note": "[safety/general]"
+  },
+  {
+    "en_term": "Auxiliary systems",
+    "target_term": "вспомогательные системы",
+    "notes": "",
+    "internal_note": "[heading/general]"
+  },
+  {
+    "en_term": "Air warmer heater and circulation fan",
+    "target_term": "воздухонагреватель и циркуляционный вентилятор",
+    "notes": "",
+    "internal_note": "[equipment/general]"
+  },
+  {
+    "en_term": "Container heating system",
+    "target_term": "система отопления контейнера",
+    "notes": "",
+    "internal_note": "[equipment/general]"
+  },
+  {
+    "en_term": "Smoke detector",
+    "target_term": "дымовой извещатель",
+    "notes": "",
+    "internal_note": "[safety/general]"
+  },
+  {
+    "en_term": "Manual call point",
+    "target_term": "ручной извещатель",
+    "notes": "",
+    "internal_note": "[safety/general]"
+  },
+  {
+    "en_term": "Fire alarm control panel",
+    "target_term": "панель управления пожарной сигнализацией",
+    "notes": "",
+    "internal_note": "[safety/general] Keep FACP in Latin."
+  },
+  {
+    "en_term": "Solenoid valve",
+    "target_term": "электромагнитный клапан",
+    "notes": "",
+    "internal_note": "[equipment/general]"
+  },
+  {
+    "en_term": "Sounder beacon",
+    "target_term": "звуковой маяк",
+    "notes": "",
+    "internal_note": "[safety/general]"
+  },
+  {
+    "en_term": "Zone-1",
+    "target_term": "Зона-1",
+    "notes": "",
+    "internal_note": "[safety/general]"
+  },
+  {
+    "en_term": "Cause and effect",
+    "target_term": "причинно-следственная связь",
+    "notes": "",
+    "internal_note": "[heading/general] Approved doc uses both forms. Pick one."
+  },
+  {
+    "en_term": "Emergency stop mushroom head push button",
+    "target_term": "грибовидная кнопка остановки",
+    "notes": "",
+    "internal_note": "[control panel/general]"
+  },
+  {
+    "en_term": "Lamp test push button",
+    "target_term": "кнопка проверки индикатора",
+    "notes": "",
+    "internal_note": "[control panel/general]"
+  },
+  {
+    "en_term": "Selector switch",
+    "target_term": "селекторный переключатель",
+    "notes": "",
+    "internal_note": "[control panel/general]"
+  },
+  {
+    "en_term": "ESD",
+    "target_term": "аварийная остановка (ESD)",
+    "notes": "NOT 'электростатическая (ESD)'",
+    "internal_note": "[control panel/general] Approved doc reads ESD as electrostatic discharge. In a control-panel context it almost certainly means emergency shutdown. Confirm with an engineer."
+  },
+  {
+    "en_term": "TRIP",
+    "target_term": "отключение",
+    "notes": "NOT 'поездки'",
+    "internal_note": "[control panel/general] Approved \"Мотор ½ поездки\" translates trip as a journey. Replica gave ОТКЛЮЧЕНИЕ, which is correct."
+  },
+  {
+    "en_term": "Low-Low level",
+    "target_term": "низкий-низкий уровень",
+    "notes": "",
+    "internal_note": "[process/general] Approved body text also says \"очень низкий уровень\". Use низкий-низкий consistently."
+  },
+  {
+    "en_term": "Low level",
+    "target_term": "низкий уровень",
+    "notes": "",
+    "internal_note": "[process/general]"
+  },
+  {
+    "en_term": "High level",
+    "target_term": "высокий уровень",
+    "notes": "",
+    "internal_note": "[process/general]"
+  },
+  {
+    "en_term": "Dry running",
+    "target_term": "работа всухую",
+    "notes": "",
+    "internal_note": "[process/general]"
+  },
+  {
+    "en_term": "Device faulty",
+    "target_term": "неисправность устройства",
+    "notes": "",
+    "internal_note": "[process/general]"
+  },
+  {
+    "en_term": "Alarm",
+    "target_term": "сигнал тревоги",
+    "notes": "",
+    "internal_note": "[process/general]"
+  },
+  {
+    "en_term": "Analogue input signal",
+    "target_term": "аналоговый входной сигнал",
+    "notes": "",
+    "internal_note": "[signals/general]"
+  },
+  {
+    "en_term": "Digital input signals",
+    "target_term": "цифровые входные сигналы",
+    "notes": "",
+    "internal_note": "[signals/general]"
+  },
+  {
+    "en_term": "Digital output signals",
+    "target_term": "цифровые выходные сигналы",
+    "notes": "",
+    "internal_note": "[signals/general]"
+  },
+  {
+    "en_term": "Local",
+    "target_term": "локальное",
+    "notes": "",
+    "internal_note": "[signals/general] Approved doc also says удаленное in two places. Use дистанционное."
+  },
+  {
+    "en_term": "Remote",
+    "target_term": "дистанционное",
+    "notes": "",
+    "internal_note": "[signals/general] Approved doc also says удаленное in two places. Use дистанционное."
+  },
+  {
+    "en_term": "High pressure PAH",
+    "target_term": "высокое давление PAH",
+    "notes": "",
+    "internal_note": "[signals/general] Approved table header reads \"ПАУ высокого давления\" (garbled). Keep PAH/PAHH in Latin."
+  },
+  {
+    "en_term": "Introduction",
+    "target_term": "Введение",
+    "notes": "",
+    "internal_note": "[heading/general]",
+    "exact_only": true
+  },
+  {
+    "en_term": "Reference documents",
+    "target_term": "Справочные документы",
+    "notes": "",
+    "internal_note": "[heading/general]"
+  },
+  {
+    "en_term": "Design Basis",
+    "target_term": "Основа проектирования",
+    "notes": "",
+    "internal_note": "[heading/general]"
+  },
+  {
+    "en_term": "Operating Principle for main System",
+    "target_term": "Принцип работы основной системы",
+    "notes": "",
+    "internal_note": "[heading/general]"
+  },
+  {
+    "en_term": "Operating & Control Philosophy",
+    "target_term": "Принципы эксплуатации и управления",
+    "notes": "",
+    "internal_note": "[heading/general]"
+  },
+  {
+    "en_term": "Equipment",
+    "target_term": "Оборудование",
+    "notes": "",
+    "internal_note": "[table header/general]",
+    "exact_only": true
+  },
+  {
+    "en_term": "Remarks",
+    "target_term": "Примечание",
+    "notes": "",
+    "internal_note": "[table header/general]",
+    "exact_only": true
+  },
+  {
+    "en_term": "Note",
+    "target_term": "Примечание",
+    "notes": "",
+    "internal_note": "[table header/general]",
+    "exact_only": true
+  },
+  {
+    "en_term": "Refer Section",
+    "target_term": "см. раздел",
+    "notes": "",
+    "internal_note": "[reference/general]"
+  },
+  {
+    "en_term": "Annexure",
+    "target_term": "Приложение",
+    "notes": "",
+    "internal_note": "[reference/general]"
+  },
+  {
+    "en_term": "Page X of Y",
+    "target_term": "Страница X из Y",
+    "notes": "",
+    "internal_note": "[reference/general] Do not translate the document title inside the footer; the replica scrambled the order on some pages."
+  },
+  {
+    "en_term": "Client",
+    "target_term": "заказчик",
+    "notes": "",
+    "internal_note": "[general/general]"
+  },
+  {
+    "en_term": "Document Number",
+    "target_term": "Номер документа",
+    "notes": "",
+    "internal_note": "[doc control/general]"
+  },
+  {
+    "en_term": "Date Issued",
+    "target_term": "Дата выпуска",
+    "notes": "",
+    "internal_note": "[doc control/general]"
+  },
+  {
+    "en_term": "Rev.",
+    "target_term": "Ред.",
+    "notes": "",
+    "internal_note": "[doc control/general]",
+    "exact_only": true
+  },
+  {
+    "en_term": "Date",
+    "target_term": "Дата",
+    "notes": "",
+    "internal_note": "[doc control/general]",
+    "exact_only": true
+  },
+  {
+    "en_term": "Issue, Modification",
+    "target_term": "Выпуск, изменения",
+    "notes": "",
+    "internal_note": "[doc control/general]"
+  },
+  {
+    "en_term": "Prepared",
+    "target_term": "Подготовил",
+    "notes": "",
+    "internal_note": "[doc control/general]",
+    "exact_only": true
+  },
+  {
+    "en_term": "Checked",
+    "target_term": "Проверил",
+    "notes": "",
+    "internal_note": "[doc control/general]",
+    "exact_only": true
+  },
+  {
+    "en_term": "Approved",
+    "target_term": "Утвердил",
+    "notes": "",
+    "internal_note": "[doc control/general]",
+    "exact_only": true
+  },
+  {
+    "en_term": "Prepared by",
+    "target_term": "Подготовлено",
+    "notes": "",
+    "internal_note": "[doc control/general]"
+  },
+  {
+    "en_term": "Checked by",
+    "target_term": "Проверено",
+    "notes": "",
+    "internal_note": "[doc control/general]"
+  },
+  {
+    "en_term": "Approved by",
+    "target_term": "Утверждено",
+    "notes": "",
+    "internal_note": "[doc control/general]"
+  },
+  {
+    "en_term": "Approvals",
+    "target_term": "Согласования",
+    "notes": "",
+    "internal_note": "[doc control/general]",
+    "exact_only": true
+  },
+  {
+    "en_term": "Name",
+    "target_term": "ФИО",
+    "notes": "",
+    "internal_note": "[doc control/general]",
+    "exact_only": true
+  },
+  {
+    "en_term": "Job Title",
+    "target_term": "Должность",
+    "notes": "",
+    "internal_note": "[doc control/general]"
+  },
+  {
+    "en_term": "Signed",
+    "target_term": "Подпись",
+    "notes": "",
+    "internal_note": "[doc control/general]",
+    "exact_only": true
+  },
+  {
+    "en_term": "Project Engineer",
+    "target_term": "Инженер проекта",
+    "notes": "",
+    "internal_note": "[role/general] Replica left this in English in the approvals block."
+  },
+  {
+    "en_term": "Rozhkovskoye Field Development",
+    "target_term": "Обустройство месторождения Рожковское",
+    "notes": "",
+    "internal_note": "[project/project] Body text of the approved doc says \"Проект разработки Рожковского месторождения\"; header form preferred."
+  },
+  {
+    "en_term": "Ural Oil and Gas LLP",
+    "target_term": "ТОО «Урал Ойл энд Газ»",
+    "notes": "",
+    "internal_note": "[company/project] Use «» quotes consistently; replica dropped them in the header."
+  },
+  {
+    "en_term": "Doc.",
+    "target_term": "документ",
+    "notes": "",
+    "internal_note": "e.g. 'refer Doc. RZK-...' -> 'обратитесь к документу ...'; decline as needed"
+  },
+  {
+    "en_term": "Auto",
+    "target_term": "автоматический",
+    "notes": "",
+    "internal_note": "selector position / mode"
+  },
+  {
+    "en_term": "Skid",
+    "target_term": "рама",
+    "notes": "",
+    "internal_note": "Ref-5: рама x2, поддон x1, платформа x1 -> majority"
+  },
+  {
+    "en_term": "Tag number",
+    "target_term": "номер бирки",
+    "notes": "NOT номер тэга / номер метки",
+    "internal_note": "Ref-5 uses бирка x6, тэг x8, этикетка x3; 'бирка' chosen because both approved docs use it in equipment lists ('Номер бирки (*)', datasheet 'Номер бирки товара')"
+  },
+  {
+    "en_term": "Serial No.",
+    "target_term": "Серийный номер",
+    "notes": "",
+    "internal_note": "Ref-5 uses 'Серийный' x8 for the row-number column"
+  },
+  {
+    "en_term": "Sl no",
+    "target_term": "№ п/п",
+    "notes": "",
+    "internal_note": "Ref-5 translates the 'Sl No' column header as 'Серийный номер'"
+  },
+  {
+    "en_term": "Sl. No",
+    "target_term": "№ п/п",
+    "notes": "",
+    "internal_note": "same as 'Sl no'"
+  },
+  {
+    "en_term": "HART",
+    "target_term": "HART",
+    "notes": "",
+    "internal_note": "Preserve the protocol designation in Latin."
+  },
+  {
+    "en_term": "Operation Philosophy",
+    "target_term": "Принципы эксплуатации",
+    "notes": "",
+    "internal_note": "Technical operating principles, not a literal philosophical operation."
+  },
+  {
+    "en_term": "NefteStroiService Ltd. LLP",
+    "target_term": "ТОО «Нефтестройсервис ЛТД»",
+    "notes": "",
+    "internal_note": "Ref-5: ТОО x38 vs ООО x1"
+  },
+  {
+    "en_term": "Chemical Injection Packages",
+    "target_term": "Комплекты для впрыска химических реагентов",
+    "notes": "",
+    "internal_note": "Ref-5 is inconsistent (cover 'Пакеты химической инъекции', body 'впрыск'/'комплект'); majority rule"
+  },
+  {
+    "en_term": "Serial No",
+    "target_term": "Серийный номер",
+    "notes": "",
+    "internal_note": "alias without the dot; Ref-5 uses 'Серийный' x8"
+  },
+  {
+    "en_term": "inst. jb",
+    "target_term": "Распределительная коробка приборов",
+    "notes": "",
+    "internal_note": "[pairs-auto Ref-5 n=27 share=1.00] review: derived from approved docs"
+  },
+  {
+    "en_term": "contact",
+    "target_term": "контакт",
+    "notes": "",
+    "internal_note": "[pairs-auto Ref-5 n=9 share=1.00] review: derived from approved docs",
+    "exact_only": true
+  },
+  {
+    "en_term": "to be generated",
+    "target_term": "Будет выдано",
+    "notes": "",
+    "internal_note": "[pairs-auto Ref-2 n=5 share=1.00] review: derived from approved docs"
+  },
+  {
+    "en_term": "accuracy",
+    "target_term": "Точность",
+    "notes": "",
+    "internal_note": "[pairs-auto Ref-6 n=4 share=1.00] review: derived from approved docs",
+    "exact_only": true
+  },
+  {
+    "en_term": "calibrated span",
+    "target_term": "Калиброванный диапазон",
+    "notes": "",
+    "internal_note": "[pairs-auto Ref-6 n=4 share=1.00] review: derived from approved docs"
+  },
+  {
+    "en_term": "cause effect",
+    "target_term": "Причина следствие",
+    "notes": "",
+    "internal_note": "[pairs-auto Ref-5 n=4 share=1.00] review: derived from approved docs"
+  },
+  {
+    "en_term": "diaphragm",
+    "target_term": "Диафрагма",
+    "notes": "",
+    "internal_note": "[pairs-auto Ref-6 n=4 share=1.00] review: derived from approved docs"
+  },
+  {
+    "en_term": "digital indicator",
+    "target_term": "Цифровой индикатор",
+    "notes": "",
+    "internal_note": "[pairs-auto Ref-6 n=4 share=1.00] review: derived from approved docs"
+  },
+  {
+    "en_term": "hooter on",
+    "target_term": "Сирена вкл",
+    "notes": "",
+    "internal_note": "[pairs-auto Ref-5 n=4 share=1.00] review: derived from approved docs"
+  },
+  {
+    "en_term": "indicator",
+    "target_term": "Индикатор",
+    "notes": "",
+    "internal_note": "[pairs-auto Ref-6 n=4 share=1.00] review: derived from approved docs",
+    "exact_only": true
+  },
+  {
+    "en_term": "item description",
+    "target_term": "Описание оборудования",
+    "notes": "",
+    "internal_note": "[pairs-auto Ref-6 n=4 share=1.00] review: derived from approved docs"
+  },
+  {
+    "en_term": "item tag no",
+    "target_term": "Позиционное обозначение оборудования",
+    "notes": "",
+    "internal_note": "[pairs-auto Ref-6 n=4 share=1.00] review: derived from approved docs"
+  },
+  {
+    "en_term": "manufacturer",
+    "target_term": "Производитель",
+    "notes": "",
+    "internal_note": "[pairs-auto Ref-6 n=4 share=1.00] review: derived from approved docs",
+    "exact_only": true
+  },
+  {
+    "en_term": "model no",
+    "target_term": "Номер модели",
+    "notes": "",
+    "internal_note": "[pairs-auto Ref-6 n=4 share=1.00] review: derived from approved docs"
+  },
+  {
+    "en_term": "others",
+    "target_term": "Другие",
+    "notes": "",
+    "internal_note": "[pairs-auto Ref-6 n=4 share=1.00] review: derived from approved docs",
+    "exact_only": true
+  },
+  {
+    "en_term": "section",
+    "target_term": "Раздел",
+    "notes": "",
+    "internal_note": "[pairs-auto Ref-2,Ref-3,Ref-4,Ref-6 n=4 share=1.00] review: derived from approved docs",
+    "exact_only": true
+  },
+  {
+    "en_term": "surface preparation",
+    "target_term": "подготовка поверхности",
+    "notes": "",
+    "internal_note": "[pairs-auto Ref-2 n=4 share=1.00] review: derived from approved docs"
+  },
+  {
+    "en_term": "to be provided",
+    "target_term": "Будет предоставлено",
+    "notes": "",
+    "internal_note": "[pairs-auto Ref-2 n=4 share=1.00] review: derived from approved docs"
+  },
+  {
+    "en_term": "type",
+    "target_term": "Тип",
+    "notes": "",
+    "internal_note": "[pairs-auto Ref-6 n=4 share=1.00] review: derived from approved docs",
+    "exact_only": true
+  },
+  {
+    "en_term": "Datasheet for Check Valve",
+    "target_term": "Технический паспорт обратного клапана",
+    "notes": "",
+    "internal_note": "approved docs Ref-2..Ref-6 (Word versions), Ref-4 title"
+  },
+  {
+    "en_term": "Package Lead",
+    "target_term": "Ведущий инженер по комплектации",
+    "notes": "",
+    "internal_note": "approved docs Ref-2..Ref-6 (Word versions), Ref-2"
+  },
+  {
+    "en_term": "Transfer Station Methanol Package",
+    "target_term": "Комплект для перевалочной станции по впрыску метанола",
+    "notes": "",
+    "internal_note": "Ref-5 approved wording (otherwise the model lists the glossary words in English order)"
+  },
+  {
+    "en_term": "Transfer Station Corrosion Inhibitor Package",
+    "target_term": "Комплект ингибитора коррозии для перевалочной станции",
+    "notes": "",
+    "internal_note": "Ref-5 approved wording"
+  },
+  {
+    "en_term": "Package Instruments and Equipment",
+    "target_term": "Приборы и оборудование комплекта",
+    "notes": "",
+    "internal_note": "heading C in Ref-5; the single-word hint produced 'Комплект Приборы и Оборудование'"
+  },
+  {
+    "en_term": "Chemical Injection Skid",
+    "target_term": "установка для впрыска химических реагентов",
+    "notes": "",
+    "internal_note": "same pattern as 'Detergent Injection skid' (glossary, from the CSV)"
+  },
+  {
+    "en_term": "20Feet container",
+    "target_term": "20-футовый контейнер",
+    "notes": "",
+    "internal_note": "'20Feet' is written as one word in the source"
+  },
+  {
+    "en_term": "40Feet container",
+    "target_term": "40-футовый контейнер",
+    "notes": "",
+    "internal_note": ""
+  },
+  {
+    "en_term": "40Feet Methanol container",
+    "target_term": "40-футовый контейнер для метанола",
+    "notes": "",
+    "internal_note": "Ref-5 heading 'Cause and effect for 40Feet Methanol container'"
+  },
+  {
+    "en_term": "Electric actuator",
+    "target_term": "электропривод",
+    "notes": "",
+    "internal_note": "approved docs, Ref-2"
+  },
+  {
+    "en_term": "PB",
+    "target_term": "кнопка",
+    "notes": "",
+    "internal_note": "approved docs, Ref-5 operator list: 'Q2 STOP PUMP-B PB' -> 'КНОПКА ОСТАНОВКИ НАСОСА Q2 STOP PUMP-B'"
+  },
+  {
+    "en_term": "Lamp test PB",
+    "target_term": "кнопка проверки индикатора",
+    "notes": "",
+    "internal_note": "approved docs, Ref-5: 'LAMP TEST PB' -> 'КНОПКА ПРОВЕРКИ ИНДИКАТОРА'"
+  },
+  {
+    "en_term": "Main incoming lamp",
+    "target_term": "главная входная лампа",
+    "notes": "",
+    "internal_note": "approved docs, Ref-5: 'ГЛАВНАЯ ВХОДНАЯ ЛАМПА'"
+  },
+  {
+    "en_term": "Main incoming switch",
+    "target_term": "главный входной выключатель",
+    "notes": "",
+    "internal_note": "approved docs, Ref-5 (its wording 'для входящего потока' is a mistranslation)"
+  },
+  {
+    "en_term": "Duty/Standby",
+    "target_term": "режим работы/резерв",
+    "notes": "",
+    "internal_note": "approved docs, Ref-5: 'РЕЖИМА РАБОТЫ/РЕЗЕРВА'"
+  },
+  {
+    "en_term": "Run",
+    "target_term": "работа",
+    "notes": "",
+    "internal_note": "Ref-5 'Q1-PUMP A РАБОТА (КРАСНАЯ)'",
+    "exact_only": true
+  },
+  {
+    "en_term": "Start",
+    "target_term": "запуск",
+    "notes": "",
+    "internal_note": "Ref-5 'КНОПКА ЗАПУСКА НАСОСА'"
+  },
+  {
+    "en_term": "Red",
+    "target_term": "красный",
+    "notes": "",
+    "internal_note": "Ref-5 colours in brackets are translated"
+  },
+  {
+    "en_term": "Green",
+    "target_term": "зелёный",
+    "notes": "",
+    "internal_note": "Ref-5 '(ЗЕЛЕНЫЙ)'"
+  },
+  {
+    "en_term": "Amber",
+    "target_term": "янтарный",
+    "notes": "",
+    "internal_note": "Ref-5 '(ЯНТАРНАЯ)'"
+  },
+  {
+    "en_term": "Black",
+    "target_term": "чёрный",
+    "notes": "",
+    "internal_note": "Ref-5 '(ЧЕРНЫЙ)'"
+  },
+  {
+    "en_term": "Manual",
+    "target_term": "ручной",
+    "notes": "",
+    "internal_note": "Ref-5 '(РУЧНОЙ/ВЫКЛ/АВТОМАТИЧЕСКИЙ)'"
+  },
+  {
+    "en_term": "Off",
+    "target_term": "выкл",
+    "notes": "",
+    "internal_note": "Standalone selector position only.",
+    "exact_only": true
+  },
+  {
+    "en_term": "Call point",
+    "target_term": "ручной извещатель",
+    "notes": "",
+    "internal_note": "same term as 'Manual call point' (Ref-5 has 'АКТИВИРОВАТЬ ВЫЗОВ', which loses the meaning)"
+  },
+  {
+    "en_term": "Pressure transmitter Tag",
+    "target_term": "Бирка датчика давления",
+    "notes": "",
+    "internal_note": "Ref-5 says 'Метка'; бирка chosen with 'Tag number' -> номер бирки"
+  },
+  {
+    "en_term": "Name:",
+    "target_term": "ФИО:",
+    "notes": "",
+    "internal_note": "Standalone person-name label only, never Product Name.",
+    "exact_only": true
+  },
+  {
+    "en_term": "Project Name:",
+    "target_term": "Название проекта:",
+    "notes": "",
+    "internal_note": "so 'Name:' inside it is not read as a person's name"
+  },
+  {
+    "en_term": "Project Name",
+    "target_term": "Название проекта",
+    "notes": "",
+    "internal_note": ""
+  },
+  {
+    "en_term": "Data sheet",
+    "target_term": "технический паспорт",
+    "notes": "",
+    "internal_note": "Ref-3/Ref-4 approved: 'технический паспорт' / 'паспорта'"
+  },
+  {
+    "en_term": "GA Drawing",
+    "target_term": "чертеж общего расположения",
+    "notes": "",
+    "internal_note": "Ref-3 approved"
+  },
+  {
+    "en_term": "Positive Material Identification",
+    "target_term": "положительная идентификация материала (PMI)",
+    "notes": "",
+    "internal_note": "Ref-3 approved"
+  },
+  {
+    "en_term": "Nos",
+    "target_term": "шт.",
+    "notes": "",
+    "internal_note": "Ref-4 approved: 'Количество (шт.)'"
+  },
+  {
+    "en_term": "Swing check valve",
+    "target_term": "поворотный обратный клапан",
+    "notes": "",
+    "internal_note": "Ref-4 approved"
+  },
+  {
+    "en_term": "NefteStroiService Ltd LLP",
+    "target_term": "ТОО «Нефтестройсервис ЛТД»",
+    "notes": "",
+    "internal_note": "same company, written without the dot after Ltd"
+  },
+  {
+    "en_term": "Feet",
+    "target_term": "футов",
+    "notes": "after a number: 40 футов",
+    "internal_note": "",
+    "exact_only": false
+  },
+  {
+    "en_term": "Inches",
+    "target_term": "дюймов",
+    "notes": "after a number: 40 футов",
+    "internal_note": "",
+    "exact_only": false
+  },
+  {
+    "en_term": "NDT",
+    "target_term": "неразрушающий контроль",
+    "notes": "",
+    "internal_note": "Ref-3 approved: 'Процедура неразрушающего контроля'; do not leave NDT in Latin"
+  },
+  {
+    "en_term": "Approved for its Purpose",
+    "target_term": "Одобрено для своей цели",
+    "notes": "",
+    "internal_note": "Ref-3 approved wording"
+  },
+  {
+    "en_term": "Wellhead",
+    "target_term": "устье скважины",
+    "notes": "",
+    "internal_note": "Ref-3 approved: 'панель управления устьем скважины'"
+  },
+  {
+    "en_term": "Welhead",
+    "target_term": "устье скважины",
+    "notes": "",
+    "internal_note": "common misspelling of Wellhead in the sources"
+  },
+  {
+    "en_term": "no:",
+    "target_term": "номер",
+    "notes": "",
+    "internal_note": "abbreviation of 'number' (Ref-3 approved: 'номер документа'), never 'нет'"
+  },
+  {
+    "en_term": "FAT Report",
+    "target_term": "Отчет о заводских приемочных испытаниях (FAT)",
+    "notes": "",
+    "internal_note": "Ref-3 approved says 'на месте' (site), but FAT is the FACTORY test; confirm with the client"
+  },
+  {
+    "en_term": "Revision",
+    "target_term": "Редакция",
+    "notes": "",
+    "internal_note": "'Revision 00' label; the column header REVISION is a TM entry (РЕДАКЦИИ)"
+  },
+  {
+    "en_term": "DEG. C",
+    "target_term": "градусов цельсия",
+    "notes": "",
+    "internal_note": "Ref-4 approved: '-46 градусов цельсия'"
+  },
+  {
+    "en_term": "DEG.C",
+    "target_term": "градусов цельсия",
+    "notes": "",
+    "internal_note": "same without the space"
+  },
+  {
+    "en_term": "IO TYPE",
+    "target_term": "Тип ввода/вывода",
+    "notes": "",
+    "internal_note": "Ref-5 approved"
+  }
+]

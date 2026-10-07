@@ -1,0 +1,164 @@
+[
+  {
+    "source_text": "Prepared",
+    "target_text": "Подготовил",
+    "status": "approved",
+    "origin": "reviewer-seeded"
+  },
+  {
+    "source_text": "Checked",
+    "target_text": "Проверил",
+    "status": "approved",
+    "origin": "reviewer-seeded"
+  },
+  {
+    "source_text": "Approved",
+    "target_text": "Утвердил",
+    "status": "approved",
+    "origin": "reviewer-seeded"
+  },
+  {
+    "source_text": "Approvals",
+    "target_text": "Согласования",
+    "status": "approved",
+    "origin": "reviewer-seeded"
+  },
+  {
+    "source_text": "Name",
+    "target_text": "ФИО",
+    "status": "approved",
+    "origin": "reviewer-seeded"
+  },
+  {
+    "source_text": "Issue Type",
+    "target_text": "Тип выпуска",
+    "status": "approved",
+    "origin": "reviewer-seeded"
+  },
+  {
+    "source_text": "Revision",
+    "target_text": "РЕДАКЦИИ",
+    "status": "approved",
+    "origin": "reviewer-seeded"
+  },
+  {
+    "source_text": "Revision History",
+    "target_text": "История редакций",
+    "status": "approved",
+    "origin": "reviewer-seeded"
+  },
+  {
+    "source_text": "Item Description",
+    "target_text": "Описание товара",
+    "status": "approved",
+    "origin": "reviewer-seeded"
+  },
+  {
+    "source_text": "Model no",
+    "target_text": "Номер модели",
+    "status": "approved",
+    "origin": "reviewer-seeded"
+  },
+  {
+    "source_text": "Location",
+    "target_text": "Расположение",
+    "status": "approved",
+    "origin": "reviewer-seeded"
+  },
+  {
+    "source_text": "Process Connection",
+    "target_text": "Технологическое соединение",
+    "status": "approved",
+    "origin": "reviewer-seeded"
+  },
+  {
+    "source_text": "M.O.C.",
+    "target_text": "Материал изготовления",
+    "status": "approved",
+    "origin": "reviewer-seeded"
+  },
+  {
+    "source_text": "Diaphragm",
+    "target_text": "Диафрагма",
+    "status": "approved",
+    "origin": "reviewer-seeded"
+  },
+  {
+    "source_text": "Rev No",
+    "target_text": "Пересмотр",
+    "status": "approved",
+    "origin": "reviewer-seeded"
+  },
+  {
+    "source_text": "Doc No",
+    "target_text": "Номер документа",
+    "status": "approved",
+    "origin": "reviewer-seeded"
+  },
+  {
+    "source_text": "Hold Record",
+    "target_text": "Перечень уточнений",
+    "status": "approved",
+    "origin": "reviewer-seeded"
+  },
+  {
+    "source_text": "Hold Nr.",
+    "target_text": "Номер уточнения",
+    "status": "approved",
+    "origin": "reviewer-seeded"
+  },
+  {
+    "source_text": "Package Engineer",
+    "target_text": "Инженер по комплектации",
+    "status": "approved",
+    "origin": "reviewer-seeded"
+  },
+  {
+    "source_text": "Engineering Manager",
+    "target_text": "Руководитель инженерного отдела",
+    "status": "approved",
+    "origin": "reviewer-seeded"
+  },
+  {
+    "source_text": "Field Development",
+    "target_text": "Обустройство месторождения",
+    "status": "approved",
+    "origin": "reviewer-seeded"
+  },
+  {
+    "source_text": "Item Tag No.",
+    "target_text": "Номер бирки товара",
+    "status": "approved",
+    "origin": "reviewer-seeded"
+  },
+  {
+    "source_text": "ITP",
+    "target_text": "ITP",
+    "status": "approved",
+    "origin": "reviewer-seeded"
+  },
+  {
+    "source_text": "ROK",
+    "target_text": "ROK",
+    "status": "approved",
+    "origin": "reviewer-seeded"
+  },
+  {
+    "source_text": "Issue, Modification",
+    "target_text": "Выпуск, изменения",
+    "status": "approved",
+    "origin": "reviewer-seeded"
+  },
+  {
+    "source_text": "Qty",
+    "target_text": "Количество",
+    "status": "approved",
+    "origin": "reviewer-seeded"
+  },
+  {
+    "source_text": "Measuring Range",
+    "target_text": "Диапазон измерения",
+    "status": "approved",
+    "origin": "reviewer-seeded"
+  }
+]

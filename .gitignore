@@ -1,0 +1,55 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+.pytest_cache/
+.mypy_cache/
+*.egg-info/
+
+# Secrets: keys live in environment variables, never in the repo
+.env
+.env.*
+*.key
+*.pem
+secrets.*
+
+# Everything a run produces (translations of client documents, caches, logs)
+output/
+output_*/
+jobs/
+*_translation_cache.json
+*_verification_cache.json
+*_verification.json
+*_llm_call_log.json
+*_ru_replica*.docx
+*_ru_review*.docx
+*_kk_replica*.docx
+*_kk_review*.docx
+
+# Client documents and conversions (confidential)
+*.pdf
+*.docx
+!docs/**/*.pdf
+!docs/**/*.docx
+
+# Word lock / temp files
+~$*
+*.tmp
+
+# Backups and analysis files of the terminology data (the live files stay in the repo)
+data/*.backup_*.json
+data/*.prebackup_*.json
+data/*.prepairs_*.json
+data/*.prev*.json
+data/*.csv
+*.bak
+
+# Editors, OS, tools
+.vscode/
+.idea/
+.claude/
+.DS_Store
+Thumbs.db
+desktop.ini
