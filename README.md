@@ -73,10 +73,39 @@ dimension plus 25. The document confidence averages the segments, weighted by le
 
 Every picture is copied unchanged; text inside pictures is not translated.
 
+## API service (FastAPI)
+
+The backend starts translations through a small internal HTTP service in `app/`:
+
+```powershell
+pip install -r requirements.txt
+uvicorn app.main:create_app --factory --host 127.0.0.1 --port 8000
+```
+
+Run it from the repository root and keep it off the public network: only the backend calls it, with the shared secret
+in the `X-API-Key` header. Settings come from environment variables (see `.env.example`): `OPENROUTER_API_KEY`,
+`EXTRACTION_API_KEY`, `EXTRACTION_FILES_ROOT` (every input and output path must lie inside it), `EXTRACTION_STATE_DIR`
+(job state and the translation cache shared by all jobs) and `EXTRACTION_MAX_JOBS` (default 2).
+
+| Endpoint | Purpose |
+|---|---|
+| `POST /jobs` | start a job: `{jobId, inputPath, outputDir, options:{language, verify}}` -> 202 `Queued` (same `jobId` again returns the existing job) |
+| `GET /jobs/{jobId}` | `{status, progress, stage, critical, moderate, documentScore, reviewRequired, error, files, createdAt, startedAt, finishedAt}` |
+| `GET /jobs?status=Running` | list jobs, newest first |
+| `POST /jobs/{jobId}/cancel` | cancel a queued job at once, or a running one at its next progress report |
+| `GET /health` | `{status, running, queued, maxConcurrent, openrouterKeyConfigured}`; needs no key |
+
+Statuses: `Queued`, `Running`, `Done`, `Failed`, `Cancelled`. A finished translation with flagged rows is `Done` with
+`reviewRequired: true`; a run in which segments could not be translated is `Failed`. Every error is
+`{"code": "...", "message": "..."}`. A job left `Queued` or `Running` by a restart is marked `Failed` on start-up.
+Layout: `app/api/routes` (endpoints), `app/schemas` (models), `app/services` (job manager, translator), `app/core`
+(settings, errors). The pipeline itself is `pipeline.translate_file(input, output_dir, on_progress, config, cache_dir)`.
+
 ## Offline Checks
 
 ```powershell
 python -m unittest test_corrections test_verifier test_docx -v
+python -m unittest discover -s tests -t .      # job manager, translate_file, API (needs requirements-dev.txt)
 python smoke_test.py
 ```
 

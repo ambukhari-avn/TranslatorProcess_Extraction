@@ -3,6 +3,7 @@ Usage: python pipeline.py path/to/document.pdf"""
 import sys
 import re
 import json
+import threading
 import os
 import ast
 import hashlib
@@ -31,6 +32,10 @@ LEAK_RE = re.compile(r"\[\[\s*P\d+\s*\]\]")
 PAGE_RE = re.compile(r"p{1,2}age\s*(\d+)\s*[of\s]{1,6}(\d+)", re.IGNORECASE)   # also the jumbled "PPage 15o fo 105"
 FLAG_RULES = {"latin_words_in_output", "possibly_untranslated", "mixed_script_token", "low_confidence",
               "verification_unavailable"}
+
+
+class JobCancelled(Exception):
+    """Raised from the progress callback to stop a run; everything translated so far is already cached."""
 
 
 class ReviewRequiredError(RuntimeError):
@@ -93,11 +98,18 @@ def _load_cache(path: str) -> dict:
     return {}
 
 
+_CACHE_LOCK = threading.Lock()
+
+
 def _save_cache(path: str, cache: dict):
-    tmp = path + ".tmp"
-    with open(tmp, "w", encoding="utf-8") as f:
-        json.dump(cache, f, ensure_ascii=False)
-    os.replace(tmp, path)
+    """Written atomically and merged with the file's current content, so runs sharing one cache never lose each other's entries."""
+    with _CACHE_LOCK:
+        merged = _load_cache(path)
+        merged.update(cache)
+        tmp = f"{path}.{threading.get_ident()}.tmp"
+        with open(tmp, "w", encoding="utf-8") as f:
+            json.dump(merged, f, ensure_ascii=False)
+        os.replace(tmp, path)
 
 
 def _safe_write_docx(results, docx_path, title, verification_lines=None):
@@ -434,8 +446,20 @@ def _leaks_in_docx(path):
     return len(LEAK_RE.findall(re.sub(r"<[^>]+>", "", _docx_xml(path))))
 
 
-def run_pipeline(pdf_path: str, config: PipelineConfig, output_dir: str = "output"):
+def run_pipeline(pdf_path: str, config: PipelineConfig, output_dir: str = "output",
+                 on_progress=None, cache_dir: str = None, outputs: dict = None):
+    """Translate one PDF or Word file. on_progress(stage, percent) is called as the run advances and may raise
+    JobCancelled to stop it. cache_dir shares the translation and verification caches between documents
+    (default: caches live in output_dir). outputs, when given, receives the paths of the files written and the
+    document confidence."""
+    outputs = outputs if outputs is not None else {}
+
+    def _progress(stage, percent):
+        if on_progress:
+            on_progress(stage, max(0, min(99, round(percent))))
+
     os.makedirs(output_dir, exist_ok=True)
+    _progress("Extracting", 0)
     base_name = os.path.splitext(os.path.basename(pdf_path))[0]
     print(f"Output folder: {os.path.abspath(output_dir)}")
     print("Pictures: copied unchanged")
@@ -446,6 +470,7 @@ def run_pipeline(pdf_path: str, config: PipelineConfig, output_dir: str = "outpu
           f"each unique string is translated once and reused")
     print(f"      -> {len(segments)} segments found "
           f"({sum(1 for s in segments if s.from_ocr)} from OCR)")
+    _progress("Extracting", 5)
     chinese_segments = sum(bool(CHINESE_RE.search(seg.text)) for seg in segments)
     if chinese_segments:
         print(f"      -> Chinese detected in {chinese_segments} segment(s): preserved unchanged; English translated.")
@@ -457,7 +482,9 @@ def run_pipeline(pdf_path: str, config: PipelineConfig, output_dir: str = "outpu
     print(f"[3/5] Translating {len(segments)} segments into {config.language_name} "
           f"via {config.openrouter_model_name} ...")
     call_log, results = [], []
-    cache_path = os.path.join(output_dir, f"{base_name}_translation_cache.json")
+    if cache_dir:
+        os.makedirs(cache_dir, exist_ok=True)
+    cache_path = os.path.join(cache_dir or output_dir, "translation_cache.json" if cache_dir else f"{base_name}_translation_cache.json")
     disk_cache = _load_cache(cache_path)
     if disk_cache:
         print(f"      (resuming: {len(disk_cache)} translations found in {cache_path})")
@@ -511,6 +538,12 @@ def run_pipeline(pdf_path: str, config: PipelineConfig, output_dir: str = "outpu
         with ThreadPoolExecutor(max_workers=config.workers) as pool:
             futures = {pool.submit(process_segment, s, kb, config, call_log): s for s in todo}
             for n, fut in enumerate(as_completed(futures), start=1):
+                try:
+                    _progress("Translating", 6 + 54 * n / len(todo))
+                except JobCancelled:
+                    pool.shutdown(wait=False, cancel_futures=True)
+                    _save_cache(cache_path, dict(disk_cache))
+                    raise
                 s = futures[fut]
                 try:
                     res = fut.result()
@@ -580,6 +613,8 @@ def run_pipeline(pdf_path: str, config: PipelineConfig, output_dir: str = "outpu
             tr = _match_case(seg.text, base_text, tr)
         result = {**res, "segment": seg, "translated_text": tr, "qa_issues": list(res["qa_issues"])}
         results.append(result)
+        if i % 20 == 0:
+            _progress("Translating", 60 + 5 * i / len(segments))
 
         if result["match_type"] == "exact":
             exact_count += 1
@@ -603,20 +638,26 @@ def run_pipeline(pdf_path: str, config: PipelineConfig, output_dir: str = "outpu
                     "ocr_replica_review", "moderate",
                     f"Page {seg.page} is a scan: it stays an image in the replica and its OCR text is translated on the "
                     "next page. OCR can misread words, so check it against the scan before release."))
-    verify_cache = os.path.join(output_dir, f"{base_name}_verification_cache.json")
+    verify_cache = os.path.join(cache_dir or output_dir, "verification_cache.json" if cache_dir else f"{base_name}_verification_cache.json")
     fatal = None
     if config.verify_translations:
         print(f"      Verifying translations with {config.verifier_model} ...")
+        _progress("Verifying", 65)
         fatal = verifier.verify_results(results, kb, config, verify_cache)
+        _progress("Verifying", 75)
         if config.verify_repair and not fatal:
             _repair_flagged(results, kb, config, call_log, disk_cache, cache_path, set(canon.values()), verify_cache)
+        _progress("Verifying", 82)
     _harmonise(results)
     _flag_inconsistent(results)
     print("      Writing the translation into a copy of the Word file ..." if is_word
           else "      Building layout replica (same structure as the PDF) ...")
+    _progress("Writing", 83)
     replica_path = _write_replica(pdf_path, results, kb, config, call_log, output_dir, base_name, ocr_pages,
                                    {s.raw_text: s.text for s in segments if s.raw_text})
     print(f"      -> {replica_path}  (yellow = needs human review)")
+    outputs["output"] = replica_path
+    _progress("Writing", 90)
     verification_lines = None
     if config.verify_translations:
         fatal = verifier.verify_results(results, kb, config, verify_cache) or fatal     # blocks translated while building the replica
@@ -624,11 +665,13 @@ def run_pipeline(pdf_path: str, config: PipelineConfig, output_dir: str = "outpu
                                                          verifier.structure_report(pdf_path, replica_path))
         report_path = os.path.join(output_dir, f"{base_name}_verification.json")
         verifier.write_report(results, summary, report_path)
+        outputs["report"], outputs["documentScore"] = report_path, summary["document_confidence"]
         print(f"      -> {report_path}")
         print("      " + verification_lines[0])
         for line in verification_lines[1:]:
             print("      " + line)
 
+    _progress("Writing", 93)
     print("[4/5] Writing audit log ...")
     log_path = os.path.join(output_dir, f"{base_name}_llm_call_log.json")
     if os.path.exists(log_path):  # keep earlier calls when resuming from the cache
@@ -640,12 +683,15 @@ def run_pipeline(pdf_path: str, config: PipelineConfig, output_dir: str = "outpu
     with open(log_path, "w", encoding="utf-8") as f:
         json.dump(call_log, f, ensure_ascii=False, indent=2)
     print(f"      -> {log_path}")
+    outputs["log"] = log_path
+    _progress("Writing", 96)
 
     print("[5/5] Writing Word review document ...")
     docx_path = os.path.join(output_dir, f"{base_name}_{config.target_language}_review.docx")
     docx_path = _safe_write_docx(results, docx_path,
                                  f"{base_name} — {config.language_name} translation review", verification_lines)
     print(f"      -> {docx_path}")
+    outputs["review"] = docx_path
 
     review_leaks = _leaks_in_docx(docx_path)
     if review_leaks:   # shown to the reviewer on purpose (flagged critical rows)
@@ -664,15 +710,43 @@ def run_pipeline(pdf_path: str, config: PipelineConfig, output_dir: str = "outpu
         print(f"\n!! INCOMPLETE: {len(failed)} segment(s) could not be translated (see api_error rows); "
               f"the files contain the English source or blanks there. Fix the cause and run again - the "
               f"others are cached and will not be paid for twice.")
+    outputs["failed"] = len(failed)
     critical = sum(1 for r in results for qa in r["qa_issues"] if qa.severity == "critical")
     moderate = sum(1 for r in results for qa in r["qa_issues"] if qa.severity == "moderate")
     print(f"\nFiles saved. {critical} critical issue(s), {moderate} moderate issue(s) flagged for review.")
+    outputs["critical"], outputs["moderate"] = critical, moderate
     if config.enforce_release_gate and (critical or moderate):
-        raise ReviewRequiredError(
+        error = ReviewRequiredError(
             f"REVIEW REQUIRED: {critical} critical and {moderate} moderate issue(s). "
             "Audit and Word files were saved, but the replica is NOT approved for release. "
             "Resolve the flagged rows and regenerate both documents.")
+        error.results = results
+        raise error
     return results
+
+
+def translate_file(input_path: str, output_dir: str, on_progress=None, config: PipelineConfig = None,
+                   cache_dir: str = None) -> dict:
+    """Translate a PDF or Word file; the single entry point for callers other than the command line.
+    Flagged rows are not an error: the files are written and `reviewRequired` is set. Anything that stops the run
+    (a rejected API key, a cancelled job) is raised: JobCancelled, RuntimeError."""
+    if not input_path.lower().endswith((".pdf", ".docx")):
+        raise ValueError("Only .pdf and .docx files can be translated.")
+    config = config or PipelineConfig()
+    outputs = {}
+    try:
+        run_pipeline(input_path, config, output_dir, on_progress=on_progress, cache_dir=cache_dir, outputs=outputs)
+    except ReviewRequiredError:
+        pass
+    if outputs.get("failed"):
+        raise RuntimeError(f"{outputs['failed']} segment(s) could not be translated (see the api_error rows in the review file). "
+                           "Check the API key and credit and run again: what was translated is cached.")
+    flagged = outputs.get("critical", 0) + outputs.get("moderate", 0)
+    if on_progress:
+        on_progress("Done", 100)
+    return {"reviewRequired": bool(flagged), "critical": outputs.get("critical", 0), "moderate": outputs.get("moderate", 0),
+            "documentScore": outputs.get("documentScore"),
+            "files": {k: outputs.get(k) for k in ("output", "review", "report", "log")}}
 
 
 def _main(argv):

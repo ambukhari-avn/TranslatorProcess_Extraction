@@ -19,6 +19,8 @@ secrets.*
 output/
 output_*/
 jobs/
+files/
+state/
 *_translation_cache.json
 *_verification_cache.json
 *_verification.json
