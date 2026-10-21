@@ -1,155 +1,117 @@
-# PDF Extraction
+# Extraction: English to Russian technical document translation
 
-## Translation Pipeline
+Translates English PDF and Word (`.docx`) technical documents into Russian and delivers the result as an editable Word
+file that keeps the look of the original, together with a bilingual review file that shows every translated segment
+next to its source and marks the items a person should check.
 
-```powershell
-python pipeline.py "path\to\source.pdf"
-```
+## What you give it, what you get
 
-Option: `--output-dir <folder>` writes every file to another folder, so an earlier run is never overwritten.
-To reuse what an earlier run already paid for, copy its `*_translation_cache.json` and
-`*_verification_cache.json` into the new folder first.
+**In:** one `.pdf` or `.docx`. Chinese text already present in the source (for example next to English in the same table
+cell) is kept exactly as written.
 
-## Word input (preferred when you have the .docx)
+**Out**, where `<name>` is the source file name and `ru` the target language:
 
-```powershell
-python pipeline.py "path	o\source.docx"
-```
+| File | What it is |
+|---|---|
+| `<name>_ru_replica.docx` | **The deliverable.** The translated document as a Word file. A Word source is edited in place; a PDF source is rebuilt page by page. Text that needs checking is highlighted yellow. |
+| `<name>_ru_review.docx` | The bilingual review file: one row per segment with the English, the Russian, a confidence score, any flags, and the verifier's explanation, plus a summary at the top. |
+| `<name>_verification.json` | Every confidence score with its reason, and the document score. |
+| `<name>_llm_call_log.json` | A record of every model call: the audit trail. |
 
-The translation is written into a copy of the original Word file: styles, tables, numbering, headers, footers and
-pictures stay exactly as the client made them, and longer Russian text reflows as it would in Word. Fixed ("exactly")
-row heights become "at least", tracked changes are accepted, and the table of contents and page numbers refresh when
-Word opens the file. A paragraph whose formatting changes inside (a bold lead-in) carries markers `⟦2⟧` (formatting
-group), `⟦t⟧` (tab), `⟦b⟧` (line break) that the translator must keep; they are masked like any placeholder, so a lost
-one is a QA flag. Text boxes do not grow with their text and pictures are copied unchanged: the run prints a note for
-each. The PDF path below remains for clients who send only a PDF. `docx_io.py` holds the Word reader and writer.
+Kazakh is also supported as a target language.
 
-The pipeline writes a bilingual review DOCX, a layout replica DOCX, an API call log,
-and a translation cache to `output`. Configure the model and target language in
-`config.py`; API keys are read from environment variables.
+## How a translation works
 
-English is translated into Russian by default. Chinese source text is copied
-unchanged, including Chinese alongside English in the same cell. Chinese-only
-segments require no model call. Chinese spans, technical identifiers, standards,
-alarm codes, numbers, and protected names are masked before translation and restored
-afterwards. Added, changed, missing, duplicated, or reordered protected content is
-flagged rather than silently accepted.
+1. **Read the document** into paragraphs and table cells, each with its page and position.
+2. **Approved translations first.** A sentence that already has an approved translation (the translation memory) is used
+   as is, with no model involved. Approved glossary terms are given to the model so the company's wording wins.
+3. **Protect what must not change.** Numbers, units, codes, standards, web addresses, names and any Chinese text are
+   replaced by placeholders before translation and put back afterwards. If one is lost, changed, duplicated or
+   reordered, it is flagged instead of being silently accepted.
+4. **Translate.** Each segment goes to the translation model. A segment that comes back wrong (English left over,
+   invented Chinese characters, a lost placeholder) is retried with a clearer instruction, then a simpler one, then a
+   second model.
+5. **Check.** Mechanical checks run on every segment (see below).
+6. **Verify.** A different model compares each Russian segment with its English source and scores it. Weak segments are
+   translated again once using the verifier's findings.
+7. **Make the files.** The same source text gets the same translation across the document, then the Word and review
+   files are written and checked once more.
 
-Cache entries are invalidated automatically when translation code, relevant
-terminology, approved translation memory, protected content, or model settings
-change. Existing caches and logs are not deleted. The first run after these
-corrections will reprocess stale entries and may incur API charges.
-QA-only and reporting-only edits no longer invalidate the entire translation
-cache; current QA is still rerun and failed entries are retried. The migration to
-this narrower fingerprint invalidates older signatures once. Finish related
-translation-policy changes before rerunning large documents to avoid repeated costs.
-The source abbreviation `OFT` is retained, not automatically corrected to `DFT`;
-confirm the apparent source typo with the responsible engineer.
+## Quality control
 
-By default, unresolved critical or moderate QA issues cause a nonzero exit status
-after audit and review files have been saved. Those files are drafts, not approved
-deliverables. Chinese preserved from the source is allowed; Chinese invented by
-the model is not. Editing a review DOCX does not update its replica or cache.
-Correct the terminology/TM or translation cause, then regenerate both files.
+**Mechanical checks.** Every segment is checked for: a missing or empty translation, a changed number, a lost or leaked
+placeholder, a changed protected name or code, Chinese that is not in the source, look-alike letters from another
+alphabet, an output that is far too short or too long, an approved glossary term that was not used, the same source
+translated two different ways, English left untranslated, and mixed alphabets inside one word.
 
-## Independent Verification
+**Independent verification.** A second model scores meaning, completeness, terminology and grammar from 0 to 100.
+Formatting (line breaks, spacing, capital letters, how codes or numbers look) is not scored; the mechanical checks cover
+it. Each segment gets a confidence, and the document gets one overall score weighted by length. Segments below the
+threshold (85) are highlighted in the Word file and listed in the review file with an explanation.
 
-After translation, a second model (`verifier_model`, default `google/gemini-3-flash-preview` through
-OpenRouter; override with `OPENROUTER_VERIFIER_MODEL`) compares every English segment with its Russian
-translation and scores it strictly from 0 to 100 on meaning, completeness, terminology and grammar.
-Formatting (line breaks, spacing, capitalisation, how codes or numbers look) is not scored; software checks it. The segment confidence is the lowest of the weighted score, the model's own figure and the weakest
-dimension plus 25. The document confidence averages the segments, weighted by length.
+**Release gate.** Anything critical or moderate that remains makes the result a **draft**: the files are saved, but the
+command exits with a warning status, and the service reports `reviewRequired` with the number of flagged items so the
+frontend can show "N items need review". A leftover placeholder in the client-facing Word file is treated as a failure
+and the file must not be sent. If any segment could not be translated at all, the run is reported as failed.
 
-- Segments below `verify_threshold` (default 85) are flagged `low_confidence` (moderate), highlighted yellow in
-  the replica and listed in the review with the verifier's explanation.
-- Segments the verifier could not score are flagged `verification_unavailable`; an expired key stops
-  verification and says so.
-- A mechanical check compares page, table and picture counts between the PDF and the replica.
-- Outputs: a confidence per row and a summary at the top of the review DOCX, plus
-  `<name>_verification.json` (every score) and `<name>_verification_cache.json` (reused on reruns).
-- Set `verify_translations = False` in `config.py` to skip the stage. Tests: `python -m unittest test_verifier -v`.
+Editing the review file does not change the translated Word file. Fix the cause (the glossary, the approved translation
+memory, or the source) and translate again.
 
-## Pictures
+## Word and PDF sources
 
-Every picture is copied unchanged; text inside pictures is not translated.
+**Word (`.docx`) is the preferred source.** The translation is written into a copy of the original file, so styles,
+tables, numbering, headers, footers and pictures stay exactly as the client made them, and longer Russian text reflows as
+it would in Word. Fixed row heights become "at least" so text is not clipped, tracked changes are accepted, and the table
+of contents and page numbers refresh when the file is opened in Word.
 
-## API service (FastAPI)
+**PDF.** When only a PDF exists, the Word file is rebuilt page by page: page size and orientation, tables as real Word
+tables, flowing paragraphs and text boxes, repeated headers and footers, and pictures in place. Text that would run into
+a footer or past the page moves down instead of overlapping. The rebuild is an approximation of the original layout, so a
+Word source always gives the better result.
 
-The backend starts translations through a small internal HTTP service in `app/`:
+Pictures are copied unchanged and the text inside them is not translated. Scanned pages (a PDF page with no text) can be
+read with OCR and appear in the review file; the Word file keeps the page image and flags it for manual replacement.
 
-```powershell
-pip install -r requirements.txt
-uvicorn app.main:create_app --factory --host 127.0.0.1 --port 8000
-```
+## Terminology
 
-Run it from the repository root and keep it off the public network: only the backend calls it, with the shared secret
-in the `X-API-Key` header. Settings come from environment variables (see `.env.example`): `OPENROUTER_API_KEY`,
-`EXTRACTION_API_KEY`, `EXTRACTION_FILES_ROOT` (every input and output path must lie inside it), `EXTRACTION_STATE_DIR`
-(job state and the translation cache shared by all jobs) and `EXTRACTION_MAX_JOBS` (default 2).
+Approved wording is kept in plain JSON files in `data/`, so it can be reviewed and versioned:
+
+- `glossary.json`: approved English to Russian term pairs (about 240).
+- `translation_memory.json`: approved whole-sentence translations.
+- `protected_terms.json`: names, codes and abbreviations that are never translated.
+- `latin_whitelist.json`: Latin words allowed to stay in the Russian text, such as standards and units.
+
+Approved wording always wins over the model's choice. The model never invents Chinese. Latin text from the English
+source (identifiers, product names) is preserved as is.
+
+## Cost
+
+Each segment that is not already approved or cached costs one translation call, plus the verifier. Translations are
+cached, so translating the same document again, or a document that shares sentences with an earlier one, costs little. A
+cached entry is refreshed automatically when the terminology or translation settings it depended on change.
+
+## The service
+
+The pipeline runs behind a small HTTP service that only the backend calls. It accepts a
+translation job for a file, reports progress and status (`Queued`, `Running`, `Done`, `Failed`, `Cancelled`), and can
+cancel a job. A finished translation with flagged rows is `Done` with `reviewRequired` set. Interactive API documentation
+is served at `/docs` while the service runs.
 
 | Endpoint | Purpose |
 |---|---|
-| `POST /jobs` | start a job: `{jobId, inputPath, outputDir, options:{language, verify}}` -> 202 `Queued` (same `jobId` again returns the existing job) |
-| `GET /jobs/{jobId}` | `{status, progress, stage, critical, moderate, documentScore, reviewRequired, error, files, createdAt, startedAt, finishedAt}` |
-| `GET /jobs?status=Running` | list jobs, newest first |
-| `POST /jobs/{jobId}/cancel` | cancel a queued job at once, or a running one at its next progress report |
-| `GET /health` | `{status, running, queued, maxConcurrent, openrouterKeyConfigured}`; needs no key |
+| `POST /jobs` | Start a translation job |
+| `GET /jobs/{jobId}` | Status, progress, stage, counts and the output file paths |
+| `GET /jobs` | List jobs |
+| `POST /jobs/{jobId}/cancel` | Cancel a job |
+| `GET /health` | Service health |
 
-Statuses: `Queued`, `Running`, `Done`, `Failed`, `Cancelled`. A finished translation with flagged rows is `Done` with
-`reviewRequired: true`; a run in which segments could not be translated is `Failed`. Every error is
-`{"code": "...", "message": "..."}`. A job left `Queued` or `Running` by a restart is marked `Failed` on start-up.
-Layout: `app/api/routes` (endpoints), `app/schemas` (models), `app/services` (job manager, translator), `app/core`
-(settings, errors). The pipeline itself is `pipeline.translate_file(input, output_dir, on_progress, config, cache_dir)`.
+## Known limitations
 
-## Offline Checks
-
-```powershell
-python -m unittest test_corrections test_verifier test_docx -v
-python -m unittest discover -s tests -t .      # job manager, translate_file, API (needs requirements-dev.txt)
-python smoke_test.py
-```
-
-Regression tests exercise Chinese preservation, English translation with simulated
-HTTP responses, technical identifiers, numeric signs, glossary scopes, cache reuse,
-Word generation, and release blocking without paid API calls.
-
-## OCR Prerequisites
-
-OCR requires the separate Tesseract executable, not only the `pytesseract` Python
-package. Install English language data and `chi_sim`/`chi_tra` for scanned Chinese.
-The pipeline checks PATH, `TESSERACT_CMD`, and standard Windows installation folders.
-
-```powershell
-$env:TESSERACT_CMD = "C:\Program Files\Tesseract-OCR\tesseract.exe"
-```
-
-Missing executables, language data, rendering failures, and empty OCR output are
-reported with their actual cause. Scanned pages remain original images in the
-replica; OCR translations appear in the review and require manual page replacement
-or annotation before release. Source Chinese/English disagreements are retained,
-not resolved by guessing engineering requirements.
-
-This standalone module extracts positioned text and detected tables from PDFs. Pages with no extractable text are rendered and passed to Tesseract OCR.
-
-## Entry point
-
-```python
-from extract_document import extract_document
-
-blocks = extract_document("document.pdf")
-```
-
-The result is a list of dictionaries. Each block has a one-based `page`, `text`, PDF-point coordinates (`x0`, `top`, `x1`, `bottom`), `font_size` when available, `kind` (`text` or `table`), and `source` (`pdfplumber` or `ocr`). Table blocks also contain a `cells` matrix. OCR blocks have no font size.
-
-OCR is page-level: it runs when a page has no extractable words. Text inside image regions on an otherwise text-bearing page is not separately OCRed.
-
-## Run standalone
-
-Install the Python dependencies and the Tesseract OCR executable, with the desired language data installed and Tesseract available on `PATH`:
-
-```powershell
-python -m pip install -r requirements.txt
-python -c "from extract_document import extract_document; print(extract_document(r'document.pdf'))"
-```
-
-Set `ocr_language` to a Tesseract language code when needed, for example `extract_document("document.pdf", ocr_language="rus")`. `dpi` controls the raster resolution used for OCR and defaults to 300.
+- A PDF is rebuilt, not preserved: very dense pages, filled shapes, spaced digits in a table of contents and static
+  footer page numbers can still differ from the original, and Russian text is longer, so the page count can grow.
+- The layout rules were tuned on this company's document templates; other templates may need adjusting.
+- Text inside pictures is not translated.
+- Translation quality is a model output. The checks catch numbers, identifiers, placeholders and weak segments, but a
+  person should review flagged rows before a document is released to a client.
+- Terminology decisions (the glossary, the NDT term list, wording such as "Pump Datasheet" and the FAT wording) belong to
+  the responsible engineer; the pipeline applies whatever has been approved.
