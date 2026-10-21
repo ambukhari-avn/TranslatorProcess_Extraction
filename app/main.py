@@ -1,17 +1,22 @@
 """The extraction service: translates PDF and Word files on request of the backend.
 
-    uvicorn app.main:create_app --factory --host 127.0.0.1 --port 8000
+    python -m uvicorn app.main:create_app --factory --host 127.0.0.1 --port 8002
 
 Run it from the repository root (the pipeline reads data/ relative to it) and keep it off the public network:
-only the backend should reach it, with the X-API-Key header."""
+only the backend should reach it, with the X-API-Key header. Settings come from environment variables; the
+repository's .env file is read first, so no variable has to be set by hand."""
 import logging
 import os
 from contextlib import asynccontextmanager
 from typing import Optional
 
-from fastapi import FastAPI
+from app.core.env import load_env_file
 
-from app.api.routes import health, jobs
+load_env_file()      # before anything below reads the environment (the pipeline reads its API key at import time)
+
+from fastapi import FastAPI  # noqa: E402
+
+from app.api.routes import health, jobs  # noqa: E402
 from app.core.config import ROOT, Settings
 from app.core.errors import register_error_handlers
 from app.services.job_manager import JobManager, Runner
